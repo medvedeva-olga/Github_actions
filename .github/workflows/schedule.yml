@@ -2,7 +2,7 @@ name: Scheduled Automated tests
 
 on:
   schedule:
-    - cron: '22 * * * *'
+    - cron: '52 * * * *'
 
 jobs:
   test_schedule:
