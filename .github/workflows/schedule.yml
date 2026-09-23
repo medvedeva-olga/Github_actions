@@ -1,11 +1,11 @@
 on:
   schedule:
-    - cron: '02 * * * *'
+    - cron: '12 * * * *'
 
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
-   steps:
+  steps:
       - name: Checkout repository
         uses: actions/checkout@v5
       - name: setup Python
