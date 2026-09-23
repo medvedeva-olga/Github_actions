@@ -2,7 +2,7 @@ name: Scheduled Automated tests
 
 on:
   schedule:
-    - cron: '52 * * * *'
+    - cron: '58 * * * *'
 
 jobs:
   test_schedule:
@@ -10,11 +10,11 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version: "3.13"
       - name: Install Chrome
         run: sudo apt-get install google-chrome-stable
       - name: Install dependencies
