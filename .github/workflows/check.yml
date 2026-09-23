@@ -33,7 +33,7 @@ jobs:
       - name: setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: {{ matrix.version }}
+          python-version: ${{ matrix.version }}
       - name: Install Chrome
         run: sudo apt-get install google-chrome-stable
       - name: Install dependencies
