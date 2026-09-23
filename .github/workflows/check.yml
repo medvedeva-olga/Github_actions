@@ -17,7 +17,7 @@ jobs:
         with:
           black: true
   test:
-    need: lint
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

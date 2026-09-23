@@ -1,23 +1,25 @@
-# name: Automated tests
+name: Automated tests
 
-# on:
-#   push
+on:
+  push
 
-# jobs:
-#   test: 
-#     runs-on: ubuntu-latest
+jobs:
+  test: 
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v5
-#       - name: setup Python
-#         uses: actions/setup-python@v6
-#         with:
-#           python-version: "3.14"
-#       - name: Install Chrome
-#         run: sudo apt-get install google-chrome-stable
-#       - name: Install dependencies
-#         run: pip install -r requirements.txt
-#       - name: Run tests
-#         run: pytest
+    steps:
+      - name: Every time
+        run: echo "This step will always run"
+      # - name: Checkout repository
+      #   uses: actions/checkout@v5
+      # - name: setup Python
+      #   uses: actions/setup-python@v6
+      #   with:
+      #     python-version: "3.14"
+      # - name: Install Chrome
+      #   run: sudo apt-get install google-chrome-stable
+      # - name: Install dependencies
+      #   run: pip install -r requirements.txt
+      # - name: Run tests
+      #   run: pytest
 
