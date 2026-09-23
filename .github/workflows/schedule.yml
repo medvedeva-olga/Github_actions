@@ -3,6 +3,7 @@ name: Scheduled Automated tests
 on:
   schedule:
     - cron: '58 * * * *'
+  workflow_dispatch: 
 
 jobs:
   test_schedule:
