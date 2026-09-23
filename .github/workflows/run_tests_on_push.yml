@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: Automated tests on push
-=======
 # name: Automated tests
->>>>>>> cfe6b8cf91163c599fbe219e2aff059d9b2a2349
 
 # on:
 #   push
