@@ -43,5 +43,5 @@ jobs:
   secret:
     runs-on: ubuntu-latest
     steps:
-      name: Print secret
-      run: echo ${{ secrets.TEST }}
+      - name: Print secret
+        run: echo ${{ secrets.TEST }}
