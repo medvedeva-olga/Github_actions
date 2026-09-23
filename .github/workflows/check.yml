@@ -1,0 +1,34 @@
+name: Check
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run linters
+        uses: wearerequired/lint-action@v3
+        with:
+          black: true
+    test:
+      need: lint
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v7
+        - name: setup Python
+          uses: actions/setup-python@v6
+          with:
+            python-version: "3.14"
+        - name: Install Chrome
+          run: sudo apt-get install google-chrome-stable
+        - name: Install dependencies
+          run: pip install -r requirements.txt
+        - name: test
+          run: pytest
