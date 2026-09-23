@@ -40,3 +40,8 @@ jobs:
         run: pip install -r requirements.txt
       - name: test
         run: pytest
+    secret:
+      runs-on: ubuntu-latest
+      steps:
+        name: Print secret
+        run: echo ${{ secrets.TEST }}
