@@ -1,43 +1,51 @@
 on:
   schedule:
-    - cron: '50 * * * *'
+    - cron: '02 * * * *'
     # - cron: '30 5,17 * * 2,4'
     # - cron: '0 */1 * * *' # every hour
-  workflow_dispatch:
-    inputs:
-      date:
-        description: 'Date to run the workflow'
-        required: true
-        type: string
-        default: 'in 1 hour'
-concurrency:
-  group: schedule${{ github.event.inputs.date }}
-  cancel-in-progress: true
-
-permissions: {}
 
 jobs:
-  schedule:
-    name: 📅 Schedule
+  test_schedule:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: austenstone/schedule@v1
+   steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: setup Python
+        uses: actions/setup-python@v6
         with:
-          github-token: ${{ secrets.TOKEN }}
-          date: ${{ github.event.inputs.date }}
-          workflow: 'run_tests_on_push.yml'
-          timezone: 'US/Eastern' # US/Central, US/Pacific
-          wait-ms: 45000
+          python-version: "3.14"
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest
+
+
+#   workflow_dispatch:
+#     inputs:
+#       date:
+#         description: 'Date to run the workflow'
+#         required: true
+#         type: string
+#         default: 'in 1 hour'
+# concurrency:
+#   group: schedule${{ github.event.inputs.date }}
+#   cancel-in-progress: true
+
+# permissions: {}
 
 # jobs:
-#   test_schedule:
+#   schedule:
+#     name: 📅 Schedule
 #     runs-on: ubuntu-latest
+#     timeout-minutes: 5
 #     steps:
-#       - name: Not on Monday or Wednesday
-#         if: github.event.schedule != '30 5 * * 1,3'
-#         run: echo "This step will be skipped on Friday and Wednesday"
-#       - name: Every time
-#         run: echo "This step will always run"
+#       - uses: austenstone/schedule@v1
+#         with:
+#           github-token: ${{ secrets.TOKEN }}
+#           # date: ${{ github.event.inputs.date }}
+#           workflow: 'run_tests_on_push.yml'
+#           timezone: 'US/Eastern' # US/Central, US/Pacific
+#           wait-ms: 45000
 
-#         name: 📅 Schedule Workflow Dispatch
